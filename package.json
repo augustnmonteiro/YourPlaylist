@@ -1,0 +1,15 @@
+{
+  "name": "youplaylist",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/augustomna2010/youplaylist.git"
+  },
+  "author": "Augusto Monteiro",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/augustomna2010/youplaylist/issues"
+  }
+}
