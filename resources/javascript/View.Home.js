@@ -1,4 +1,21 @@
-var playlistItem = 0;
+var playlistItem = 0,
+	currentVideo,
+	dragEl;
+
+function allowDrop(e){
+	e.preventDefault();
+}
+function drag(e){
+	dragEl = e.target;
+}
+function drop(e){
+	e.preventDefault();
+    this.appendChild(dragEl);
+    dragEl = null;
+}
+
+Doc.getElementById("playlist").addEventListener("drop", drop);
+Doc.getElementById("playlist").addEventListener("dragover", allowDrop);
 
 function searchMusic(e){
 	var key = e.keyCode;
@@ -15,7 +32,9 @@ function searchMusic(e){
 				li = Doc.createElement("li");
 				li.className = "dragable";
 				li.setAttribute("video-id", items[i].id.videoId);
-				li.innerHTML = '<img src="'+items[i].snippet.thumbnails.default.url+'"/><span>'+items[i].snippet.title+'</span>';
+				li.setAttribute("draggable", true);
+				li.innerHTML = '<img draggable="false" src="'+items[i].snippet.thumbnails.default.url+'"/><span>'+items[i].snippet.title+'</span>';
+				li.addEventListener("dragstart", drag);
 				li.addEventListener("click", playmusic);
 				list.appendChild(li);
 			}
@@ -25,13 +44,18 @@ function searchMusic(e){
 
 function playmusic(){
 	var video = this.getAttribute("video-id");
+	currentVideo = video;
 	loadVideo(video);
 }
 window.videoEnd = function(){
 	nextmusic();
 }
 function nextmusic(){
-	loadVideo("05dKOG0A5Wk");	
+	var videoId = "05dKOG0A5Wk";
+	if(currentVideo && currentVideo != ""){
+		videoId = currentVideo
+	}
+	loadVideo(videoId);	
 }
 Doc.getElementById("search").addEventListener("keypress", searchMusic);
 
