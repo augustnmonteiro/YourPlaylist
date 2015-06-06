@@ -2,7 +2,7 @@ App.Api.Youtube = {
 	baseUrl: "https://www.googleapis.com/youtube/v3/",
 	baseParam: {
 		key: "AIzaSyBy4Hl33iqHbJe6nFTDh-f6cASBGjy4vL4",
-		maxResults: 50,
+		maxResults: 20,
 		order: "viewCount",
 		part: "snippet",
 		pageToken: ""
@@ -30,3 +30,50 @@ App.Api.Youtube = {
 		this.lastquery = q;
 	}
 };
+
+var tag = document.createElement('script'),
+	firstScriptTag,
+	player,
+	done = false;
+
+function loadIframeApi(){
+	tag.src = "https://www.youtube.com/iframe_api";
+	firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		height: '200',
+		width: '290',
+		videoId: 'M7lc1UVf-VE',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING && !done) {
+		setTimeout(stopVideo, 6000);
+		done = true;
+	}
+	if(event.data == YT.PlayerState.ENDED){
+		videoEnd();
+	}
+}
+function videoEnd(){
+
+}
+function stopVideo() {
+	player.stopVideo();
+}
+function loadVideo(videoId){
+	player.loadVideoById({
+		'videoId': videoId,
+       	'startSeconds': 1
+   	});
+}

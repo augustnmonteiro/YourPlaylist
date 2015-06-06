@@ -1,3 +1,73 @@
 body{
 	background: #efefef;
+	width: 600px;
+	margin: 10px auto;
+	-moz-user-select: none;
+  	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+.span6{
+	width: calc(50% - 10px);
+	float: left;
+	display: table;
+	margin: 0 10px 0 0;
+	box-sizing: border-box;
+	height: 500px;
+}
+.span6:last-child{
+	margin: 0 0 0 0;
+}
+.padding10{
+	width: 100%;
+	display: table;
+	box-sizing: border-box;
+	padding: 10px;
+}
+#leftbox{
+	background: #e9e9e9;
+}
+#play{
+	display: table;
+	width: 100%;
+	border: none;
+	height: 200px;
+	background: #000;
+}
+.search{
+	background: #DDD;
+}
+.search label{
+	font: 12px "Verdana";
+	font-weight: bold;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+#search{
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+#list{
+	list-style: none;
+}
+#list li{
+	width: 100%;
+	display: table;
+	background: #ccc;
+	margin-bottom: 5px;
+}
+#list li img{
+	width: 100px;
+	height: 80px;
+	float: left;
+}
+#list li span{
+	font-size: 14px;
+	font-family: "Verdana";
+	font-weight: bold;
+	color: #333;
+	float: left;
+	width: 165px;
+	margin-left: 3px;
 }

@@ -4,8 +4,27 @@
 	<title>YouPlaylist</title>
 	<link rel="stylesheet" type="text/css" href="resources/stylesheet/main.css">
 	<script type="text/javascript" src="resources/javascript/main.js"></script>
+	<script src="resources/javascript/App.js"></script>
+	<script src="resources/javascript/App.Types.js"></script>
+	<script src="resources/javascript/App.JSON.js"></script>
+	<script src="resources/javascript/App.Storage.js"></script>
+	<script src="resources/javascript/App.Ajax.js"></script>
+	<script src="resources/javascript/App.Api.js"></script>
+	<script src="resources/javascript/App.Api.Youtube.js"></script>
+	<script src="resources/javascript/View.Home.js"></script>
 </head>
 <body>
-	
+	<div id="leftBox" class="span6">
+		<div class="search padding10">
+			<label>Qual a musica?</label>
+			<input type="search" id="search" placeholder="Qual a musica?"/>
+		</div>
+		<ul id="list" class="padding10"></ul>
+	</div>
+	<div class="span6">
+
+		<div id="player"></div>
+		<div id="playlist"></div>
+	</div>
 </body>
 </html>

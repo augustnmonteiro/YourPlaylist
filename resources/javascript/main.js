@@ -16,13 +16,17 @@ Require = [
 	"App.Storage.js",
 	"App.Ajax.js",
 	"App.Api.js",
-	"App.Api.Youtube.js"
+	"App.Api.Youtube.js",
+	"View.Home.js"
 ];
 
 function addScript(src){
 	Temp = Doc.createElement("script");
+	Temp.type = "text/javascript";
 	Temp.src = JS_PATH+src;
-	Body.appendChild(Temp);
+	Temp.async = false;
+
+	Doc.getElementsByTagName("head")[0].appendChild(Temp);
 }
 function setScripts(){
 	for(var i=0, len = Require.length; i<len; i++){
@@ -31,7 +35,6 @@ function setScripts(){
 }
 
 function init(){
-	var fs = require("fs");
 	Win = window;
 	Doc = Win.document;
 	Body = Doc.body;
