@@ -48,21 +48,25 @@ body{
 	border: 1px solid #ccc;
 	padding: 5px;
 }
-#list{
+#list, #playlist{
 	list-style: none;
+	padding: 0;
 }
-#list li{
+#list li, #playlist li{
 	width: 100%;
 	display: table;
 	background: #ccc;
 	margin-bottom: 5px;
 }
-#list li img{
+#list li img, #playlist li img{
 	width: 100px;
 	height: 80px;
 	float: left;
+	-moz-user-select: none;
+  	-webkit-user-select: none;
+	-ms-user-select: none;
 }
-#list li span{
+#list li span, , #playlist li span{
 	font-size: 14px;
 	font-family: "Verdana";
 	font-weight: bold;
@@ -70,4 +74,10 @@ body{
 	float: left;
 	width: 165px;
 	margin-left: 3px;
+}
+#playlist{
+	display: table;
+	background: red;
+	height: 100px;
+	width: 100%;
 }
