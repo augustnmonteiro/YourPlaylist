@@ -14,17 +14,22 @@
 	<script src="resources/javascript/View.Home.js"></script>
 </head>
 <body>
-	<div id="leftBox" class="span6">
-		<div class="search padding10">
-			<label>Qual a musica?</label>
-			<input type="search" id="search" placeholder="Qual a musica?"/>
+	<main id="main">
+		<div class="content-left box">
+			<div class="search box shadow">
+				<label for="">What you search for?</label>
+				<input type="search" id="search" class="input-search" placeholder="Search by music, artist and channel">
+			</div>
+			<ul id="list" class="list-videos box shadow"></ul>
 		</div>
-		<ul id="list" class="padding10"></ul>
-	</div>
-	<div class="span6">
-
-		<div id="player"></div>
-		<ul id="playlist"></ul>
-	</div>
+		<div class="content-right box">
+			<div id="player"></div>
+			<div class="playlist-container">
+				<h1 class="title">Playlist</h1>
+				<ul id="playlist" class="list-videos box shadow">
+				</ul>
+			</div>
+		</div>
+	</main>	
 </body>
 </html>
