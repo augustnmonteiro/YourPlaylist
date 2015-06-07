@@ -29,6 +29,11 @@ App.Storage = function(){
 			this.set(key, temp);
 		}
 	};
+	this.setNotExists = function(key, val){
+		if(!this.get(key)){
+			this.set(key, val);
+		}
+	};
 	this.delete = function(key){
 		localStorage.removeItem(key);
 	};
