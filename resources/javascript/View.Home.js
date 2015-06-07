@@ -69,7 +69,7 @@ function playmusicList(id){
 		video = mylist[id].id.videoId;
 	}
 	currentVideo = video;
-	currentItem += 1;
+	currentItem = id;
 	loadVideo(video);
 }
 window.videoEnd = function(){
