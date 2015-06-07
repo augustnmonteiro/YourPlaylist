@@ -63,28 +63,24 @@ function playmusic(id){
 function playmusicList(id){
 	var video = null;
 	if(typeof id == "object"){
-		id = this.getAttribute("data-id");
+		id = parseInt(this.getAttribute("data-id"));
 		video = mylist[id].id.videoId;	
 	}else{
+		id = parseInt(id);
 		video = mylist[id].id.videoId;
 	}
 	currentVideo = video;
-	currentItem = id;
+	currentItem = id+1;
 	loadVideo(video);
 }
 window.videoEnd = function(){
 	nextmusic();
 }
 function nextmusic(){
-	if(currentItem && currentItem <= mylist.length){
-		videoId = mylist[currentItem].id.videoId;
-		loadVideo(videoId);
-	}else{
-		currentItem = 0;
-		videoId = mylist[currentItem].id.videoId;
-		loadVideo(videoId);
+	if(!currentItem || currentItem >= mylist.length){
+		currentItem = 0;		
 	}
-	currentItem += 1;
+	playmusicList(currentItem);
 }
 Doc.getElementById("search").addEventListener("keypress", searchMusic);
 
