@@ -1,6 +1,15 @@
-var playlistItem = 0,
-	currentVideo,
-	dragEl;
+loadIframeApi();
+
+var currentVideo,
+	currentItem = 0,
+	videoId,
+	dragEl,
+	requestData,
+	Storage = App.Storage;
+
+Storage.setNotExists("playlist", []);
+
+var mylist = Storage.get("playlist");
 
 function allowDrop(e){
 	e.preventDefault();
@@ -10,8 +19,10 @@ function drag(e){
 }
 function drop(e){
 	e.preventDefault();
+	var id = dragEl.getAttribute("data-id");
+	dragEl.addEventListener("click", playmusicList);
     this.appendChild(dragEl);
-    dragEl = null;
+    Storage.append("playlist", requestData.items[id]);
 }
 
 Doc.getElementById("playlist").addEventListener("drop", drop);
@@ -23,6 +34,7 @@ function searchMusic(e){
 		//do search
 		query = this.value;
 		App.Api.Youtube.search(query, function(data){
+			requestData = data;
 			var list = Doc.getElementById("list"),
 				items = data.items,
 				li;
@@ -31,7 +43,7 @@ function searchMusic(e){
 			for(var i=0, len=items.length; i<len; i++){
 				li = Doc.createElement("li");
 				li.className = "dragable";
-				li.setAttribute("video-id", items[i].id.videoId);
+				li.setAttribute("data-id", i);
 				li.setAttribute("draggable", true);
 				li.innerHTML = '<img draggable="false" src="'+items[i].snippet.thumbnails.default.url+'"/><span>'+items[i].snippet.title+'</span>';
 				li.addEventListener("dragstart", drag);
@@ -42,21 +54,56 @@ function searchMusic(e){
 	}
 };
 
-function playmusic(){
-	var video = this.getAttribute("video-id");
+function playmusic(id){
+	var id = this.getAttribute("data-id"),
+		video = null;
+	video = requestData.items[id].id.videoId;
+	loadVideo(video);
+}
+function playmusicList(id){
+	var video = null;
+	if(typeof id == "object"){
+		id = this.getAttribute("data-id");
+		video = mylist[id].id.videoId;	
+	}else{
+		video = mylist[id].id.videoId;
+	}
 	currentVideo = video;
+	currentItem += 1;
 	loadVideo(video);
 }
 window.videoEnd = function(){
 	nextmusic();
 }
 function nextmusic(){
-	var videoId = "05dKOG0A5Wk";
-	if(currentVideo && currentVideo != ""){
-		videoId = currentVideo
+	if(currentItem && currentItem <= mylist.length){
+		videoId = mylist[currentItem].id.videoId;
+		loadVideo(videoId);
+	}else{
+		currentItem = 0;
+		videoId = mylist[currentItem].id.videoId;
+		loadVideo(videoId);
 	}
-	loadVideo(videoId);	
+	currentItem += 1;
 }
 Doc.getElementById("search").addEventListener("keypress", searchMusic);
 
-loadIframeApi();
+function setPlaylist(){
+	var playlist = Doc.getElementById("playlist"),
+		items = mylist,
+		li;
+
+	list.innerHTML = "";
+	for(var i=0, len=items.length; i<len; i++){
+		li = Doc.createElement("li");
+		li.className = "dragable";
+		li.setAttribute("data-id", i);
+		li.setAttribute("draggable", true);
+		li.innerHTML = '<img draggable="false" src="'+items[i].snippet.thumbnails.default.url+'"/><span>'+items[i].snippet.title+'</span>';
+		li.addEventListener("dragstart", drag);
+		li.addEventListener("click", playmusicList);
+		playlist.appendChild(li);
+	};
+	playmusicList(0);
+}
+setPlaylist();

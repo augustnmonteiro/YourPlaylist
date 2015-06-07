@@ -54,6 +54,7 @@ body{
 }
 #list li, #playlist li{
 	width: 100%;
+	position: relative;
 	display: table;
 	background: #ccc;
 	margin-bottom: 5px;
@@ -66,7 +67,7 @@ body{
   	-webkit-user-select: none;
 	-ms-user-select: none;
 }
-#list li span, , #playlist li span{
+#list li span, #playlist li span{
 	font-size: 14px;
 	font-family: "Verdana";
 	font-weight: bold;

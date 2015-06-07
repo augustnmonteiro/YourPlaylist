@@ -46,7 +46,7 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		height: '200',
 		width: '290',
-		videoId: 'M7lc1UVf-VE',
+		endSeconds: null,
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
@@ -66,14 +66,13 @@ function onPlayerStateChange(event) {
 	}
 }
 function videoEnd(){
-
+	
 }
 function stopVideo() {
 	player.stopVideo();
 }
 function loadVideo(videoId){
 	player.loadVideoById({
-		'videoId': videoId,
-       	'startSeconds': 1
+		'videoId': videoId
    	});
 }
