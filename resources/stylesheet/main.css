@@ -98,8 +98,18 @@ html,body {
 	font-size: 14px;
 }
 
-.list-videos li:last-child() {
+.list-videos li:last-child{
 	border: none;
+}
+
+.list-videos li.active{
+  	background: linear-gradient(#FF0008 0%, #CC181E 50% ,#860105 100%);
+  	background: -webkit-linear-gradient(#FF0008 0%, #CC181E 50% ,#860105 100%);
+  	background: -moz-linear-gradient(#FF0008 0%, #CC181E 50% ,#860105 100%);
+  	background: -ms-linear-gradient(#FF0008 0%, #CC181E 50% ,#860105 100%);
+}
+.list-videos li.active span{
+	color: #fff;
 }
 
 #main .content-right {
