@@ -21,6 +21,7 @@ function drop(e){
 	e.preventDefault();
 	var id = dragEl.getAttribute("data-id");
 	dragEl.addEventListener("click", playmusicList);
+	dragEl.setAttribute("data-id", mylist.length);
     this.appendChild(dragEl);
     Storage.append("playlist", requestData.items[id]);
 }

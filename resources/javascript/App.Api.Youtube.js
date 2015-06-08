@@ -3,7 +3,7 @@ App.Api.Youtube = {
 	baseParam: {
 		key: "AIzaSyBy4Hl33iqHbJe6nFTDh-f6cASBGjy4vL4",
 		maxResults: 20,
-		order: "viewCount",
+		order: "rating",
 		part: "snippet",
 		pageToken: ""
 	},
@@ -66,7 +66,7 @@ function onPlayerStateChange(event) {
 	}
 }
 function videoEnd(){
-	
+
 }
 function stopVideo() {
 	player.stopVideo();
