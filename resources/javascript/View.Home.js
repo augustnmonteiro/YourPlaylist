@@ -20,10 +20,15 @@ function drag(e){
 function drop(e){
 	e.preventDefault();
 	var id = dragEl.getAttribute("data-id");
-	dragEl.addEventListener("click", playmusicList);
-	dragEl.setAttribute("data-id", mylist.length);
-    this.appendChild(dragEl);
-    Storage.append("playlist", requestData.items[id]);
+	if(dragEl.parentNode.id == "list"){
+		dragEl.addEventListener("click", playmusicList);
+		dragEl.setAttribute("data-id", mylist.length);
+	    this.appendChild(dragEl);
+	    Storage.append("playlist", requestData.items[id]);
+	    mylist = Storage.get("playlist");
+	}else{
+		
+	}
 }
 
 Doc.getElementById("playlist").addEventListener("drop", drop);
@@ -61,6 +66,17 @@ function playmusic(id){
 	video = requestData.items[id].id.videoId;
 	loadVideo(video);
 }
+function setMusicActive(id){
+	var playlistEl = Doc.getElementById("playlist"),
+	items = playlistEl.childNodes;
+	for(var i=0, len=items.length; i<len; i++){
+		if(items[i].getAttribute && items[i].getAttribute("data-id") == id){
+			items[i].className = "draggable active";
+		}else{
+			items[i].className = "draggable";
+		}
+	}
+}
 function playmusicList(id){
 	var video = null;
 	if(typeof id == "object"){
@@ -70,6 +86,7 @@ function playmusicList(id){
 		id = parseInt(id);
 		video = mylist[id].id.videoId;
 	}
+	setMusicActive(id);
 	currentVideo = video;
 	currentItem = id+1;
 	loadVideo(video);
