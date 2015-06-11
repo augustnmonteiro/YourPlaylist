@@ -3,7 +3,7 @@ App.Api.Youtube = {
 	baseParam: {
 		key: "AIzaSyBy4Hl33iqHbJe6nFTDh-f6cASBGjy4vL4",
 		maxResults: 20,
-		order: "rating",
+		order: "viewCount",
 		part: "snippet",
 		pageToken: ""
 	},
