@@ -1,6 +1,8 @@
+'use strict'
+
 App.Types = function(){
 	this.isObject = function(param){
-		return (typeof param == "object")? true : false;
+		return (typeof param === "object");
 	};
 }
 
