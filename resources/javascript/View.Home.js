@@ -118,6 +118,6 @@ function setPlaylist(){
 		li.addEventListener("click", playmusicList);
 		playlist.appendChild(li);
 	};
-	playmusicList(0);
+	setTimeout(playmusicList.bind(null, 0), 500);
 }
 setPlaylist();
