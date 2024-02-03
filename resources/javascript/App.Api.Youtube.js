@@ -1,7 +1,7 @@
 App.Api.Youtube = {
 	baseUrl: "https://www.googleapis.com/youtube/v3/",
 	baseParam: {
-		key: "AIzaSyBy4Hl33iqHbJe6nFTDh-f6cASBGjy4vL4",
+		key: "AIzaSyDy9tU6dnsg97RjQlYPBOpysXuRUAZiOoc",
 		maxResults: 20,
 		order: "viewCount",
 		part: "snippet",
